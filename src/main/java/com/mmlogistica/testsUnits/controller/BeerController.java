@@ -5,6 +5,7 @@ import com.mmlogistica.testsUnits.dto.QuantityDTO;
 import com.mmlogistica.testsUnits.exception.BeerAlreadyRegisteredException;
 import com.mmlogistica.testsUnits.exception.BeerNotFoundException;
 import com.mmlogistica.testsUnits.exception.BeerStockExceededException;
+import com.mmlogistica.testsUnits.service.BeerService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,7 +44,7 @@ public class BeerController implements BeerControllerDocs{
     }
 
     @PatchMapping("/{id}/increment")
-    public BeerDTO increment(@PathVariable Long i, @RequestBody @Valid QuantityDTO quantityDTO) throws BeerNotFoundException, BeerStockExceededException {
+    public BeerDTO increment(@PathVariable Long id, @RequestBody @Valid QuantityDTO quantityDTO) throws BeerNotFoundException, BeerStockExceededException {
         return beerService.increment(id, quantityDTO.getQuantity());
     }
 }
